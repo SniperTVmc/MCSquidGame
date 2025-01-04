@@ -1,6 +1,7 @@
 package fr.snipertvmc.mcsquidgame.infrastructure.models;
 
 import fr.snipertvmc.mcsquidgame.utilities.MessageUtils;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
 public class SquidPlayer {
@@ -16,9 +17,9 @@ public class SquidPlayer {
 	// -------------------------------------------------- //
 
 
-	public SquidPlayer(Player player) {
-		this.player = player;
-		this.username = player.getName();
+	public SquidPlayer(String username) {
+		this.player = Bukkit.getPlayer(username);
+		this.username = username;
 	}
 
 
