@@ -1,5 +1,9 @@
 package fr.snipertvmc.mcsquidgame.infrastructure.models;
 
+import fr.snipertvmc.mcsquidgame.Main;
+import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,6 +20,7 @@ public class SquidGame {
 
 
 	public SquidGame() {
+
 		this.players = new ArrayList<>();
 	}
 
@@ -36,8 +41,13 @@ public class SquidGame {
 	}
 
 
-	public void setPlayers(List<SquidPlayer> players) {
-		this.players = players;
+	public void addPlayer(SquidPlayer squidPlayer) {
+		players.add(squidPlayer);
+	}
+
+
+	public void removePlayer(SquidPlayer squidPlayer) {
+		players.remove(squidPlayer);
 	}
 
 

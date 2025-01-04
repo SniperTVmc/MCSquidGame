@@ -19,7 +19,11 @@ public class PlayerJoin implements Listener {
 		Player player = event.getPlayer();
 		event.setJoinMessage(null);
 
-		new SquidPlayer(player).send(Main.getInstance().getGeneralPrefix() + "<gray>Bienvenue à toi</gray> <white>" + player.getName() + "</white> <gray>!</gray>");
+		SquidPlayer squidPlayer = Main.getInstance().getPlayerManager().initializePlayer(player);
+
+		squidPlayer.send(
+				Main.getInstance().getGeneralPrefix() + "<gray>Bienvenue à toi</gray> <white>" + player.getName() + "</white> <gray>!</gray>"
+		);
 	}
 
 

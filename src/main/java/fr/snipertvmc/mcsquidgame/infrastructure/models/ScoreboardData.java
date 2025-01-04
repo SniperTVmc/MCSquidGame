@@ -1,9 +1,8 @@
 package fr.snipertvmc.mcsquidgame.infrastructure.models;
 
-import fr.mrmicky.fastboard.FastBoard;
+import fr.mrmicky.fastboard.adventure.FastBoard;
+import net.kyori.adventure.text.Component;
 import org.bukkit.entity.Player;
-
-import java.util.List;
 
 public class ScoreboardData {
 
@@ -27,12 +26,12 @@ public class ScoreboardData {
 	}
 
 
-	public void updateTitle(String title) {
+	public void updateTitle(Component title) {
 		fastBoard.updateTitle(title);
 	}
 
 
-	public void updateLines(List<String> lines) {
+	public void updateLines(Component... lines) {
 		fastBoard.updateLines(lines);
 	}
 

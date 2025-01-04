@@ -1,8 +1,13 @@
 package fr.snipertvmc.mcsquidgame;
 
+import fr.snipertvmc.mcsquidgame.infrastructure.models.SquidGame;
+import fr.snipertvmc.mcsquidgame.managers.PlayerManager;
+import fr.snipertvmc.mcsquidgame.managers.ScoreboardManager;
 import fr.snipertvmc.mcsquidgame.utilities.ConsoleLogger;
 import fr.snipertvmc.mcsquidgame.utilities.RegisterUtils;
 import net.kyori.adventure.platform.bukkit.BukkitAudiences;
+import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class Main extends JavaPlugin {
@@ -18,6 +23,11 @@ public class Main extends JavaPlugin {
 	private final String consolePrefix = "§dMCSquidGame §f§l┃ §7";
 
 	private BukkitAudiences adventure;
+
+	private PlayerManager playerManager;
+	private ScoreboardManager scoreboardManager;
+
+	private SquidGame squidGame;
 
 
 	// -------------------------------------------------- //
@@ -39,14 +49,23 @@ public class Main extends JavaPlugin {
 
 		adventure = BukkitAudiences.create(this);
 
+		playerManager = new PlayerManager();
+		scoreboardManager = new ScoreboardManager();
+
+		squidGame = new SquidGame();
+
 
 		// INITIALISATION DES DONNÉES GLOBALES
 		ConsoleLogger.console("\t" + consolePrefix + "Initialisation des données globales...");
+		for (Player player : Bukkit.getOnlinePlayers()) {
+			squidGame.addPlayer(Main.getInstance().getPlayerManager().initializePlayer(player));
+		}
 		ConsoleLogger.console("\t" + consolePrefix + "Initialisation des données globales §fterminée§7.");
 
 
 		// INITIALISATION DES TÂCHES
 		ConsoleLogger.console("\t" + consolePrefix + "Initialisation des tâches...");
+		scoreboardManager.initializeScoreboardTask();
 		ConsoleLogger.console("\t" + consolePrefix + "Initialisation des tâches §fterminée§7.");
 
 
@@ -110,15 +129,26 @@ public class Main extends JavaPlugin {
 	}
 
 
-	public BukkitAudiences getAdventure() {
-		return adventure;
-	}
-
 	public String getGeneralPrefix() {
 		return generalPrefix;
 	}
 	public String getConsolePrefix() {
 		return consolePrefix;
+	}
+
+	public BukkitAudiences getAdventure() {
+		return adventure;
+	}
+
+	public PlayerManager getPlayerManager() {
+		return playerManager;
+	}
+	public ScoreboardManager getScoreboardManager() {
+		return scoreboardManager;
+	}
+
+	public SquidGame getSquidGame() {
+		return squidGame;
 	}
 
 
