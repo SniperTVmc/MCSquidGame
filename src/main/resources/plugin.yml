@@ -1,0 +1,11 @@
+main: fr.snipertvmc.mcsquidgame.Main
+
+
+name: MCSquidGame
+description: Jeu du SquidGame
+website: https://github.com/SniperTVmc
+author: Sniper_TVmc
+
+
+version: 1.0.0
+api-version: 1.20
